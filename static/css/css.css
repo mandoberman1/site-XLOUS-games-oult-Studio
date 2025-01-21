@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik+Wet+Paint&family=Tiny5&display=swap');    
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Open+Sans:wdth,wght@99.9,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+body{
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: white !important;
+}
+
+.main{
+    background-color: #25211e;
+    margin: 40px 0;
+
+    height: 700px;
+    display: flex;
+    
+    -webkit-box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
+-moz-box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
+box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
+}
+.BASE{
+
+    margin: 40px 0;
+}
+.main-site{
+    flex-direction: column;
+    padding: 50px 20px;
+}
+.main-game{
+    flex-direction: row;
+    padding: 30px 50px 0 50px;
+}
+.main-hello{
+    display: flex;
+    justify-content: center;
+    -webkit-box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+    -moz-box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+    box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+    border-radius: 15px;
+    animation: main_hello 10s infinite linear;
+    font-family: "Jost", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes main_hello{
+    0%{
+        -webkit-box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+        -moz-box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+        box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+    }
+    25%{
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    50%{
+        -webkit-box-shadow: 0px 0px 73px 0px #FFF;
+-moz-box-shadow: 0px 0px 73px 0px #FFF;
+box-shadow: 0px 0px 73px 0px #FFF;
+    }
+    75%{
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    100%{
+        -webkit-box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+        -moz-box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+        box-shadow: 0px 0px 60px 27px rgba(255, 0, 0, 0.664);
+    }
+}
+
+.text-hello{
+    text-align: center;
+    font-size: 50px;    
+}
+
+.main-games{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+.main-for-games{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.link-card-game{
+    display: flex;
+    width: 15%;
+    height: 50%;
+    text-decoration: none;
+}
+.hide-text{
+    position: relative;
+    top: -20px;
+    font-size: 13px;
+    transition: 1s ease;
+    color: #fff;
+    font-family: "Rubik Wet Paint", system-ui;
+    font-weight: 300;
+    font-style: normal;
+}
+.hide-text-hover{
+    top: 0px !important;
+}
+.card-game-img{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 30px;
+    z-index: 1;
+    transition: 1s ease;
+    border-radius: 30px;
+}
+.card-game-img-hover{
+    top: 0px !important;
+    -webkit-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important; 
+    -moz-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important   ;
+    box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important    ;
+}
+
+.game-name {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 17px 20px;
+}
+.game-icon {
+    width: 120px;
+    height: 120px;
+}
+  
+.game-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px; /* Измените значение по желанию */
+    animation: icon 3s infinite ease;
+}    
+@keyframes icon {
+    0%{
+        transform: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    50%{
+        transform: scale(0.90);
+        -webkit-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6);
+        -moz-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.main-game-name{
+    display: flex;
+    width: 20%;
+    height: 15%;
+}
+
+.main-game-cover{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    
+}
+.game-cover-img{
+    height: 400px;
+    width: 600px;
+    border-radius: 30px;
+    transition: 1s;
+}
+.game-cover-img:hover{
+    transform: scale(0.98); /* Подъем при наведении */
+    -webkit-box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6);
+    -moz-box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6);
+    box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6);
+}
+
+.game-cover-description{
+    display: flex;
+    padding: 10px;
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style:italic;
+    font-size: 20px;
+}
+
+.main-game-banner{
+    display: flex;
+    flex-direction: column;
+}
+.game-banner-img{
+    width: 300px;
+    height: 500px;
+    display: flex;
+    align-self: center;
+    border-radius: 30px;
+    transition: 1s;
+}
+.game-banner-img:hover{
+    transform: scale(0.98); /* Подъем при наведении */
+    -webkit-box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6);
+    -moz-box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6);
+    box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6);
+}
+.wtyf{
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style:italic;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    bottom: -10px;
+}
+.game-requirements{
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    margin: 0 25%;
+}
+.game-requirements li{
+    list-style-type: symbols();
+}
+
+.main-game-content-left{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+.main-game-content-right{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    margin-top: 5px;
+}
+.main-download-game{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 15%;
+    align-self: flex-end;
+    position: relative;
+    bottom: 50px;
+    left: 50px;
+}
+.download-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #7c7c7c; /* Зеленый фон */
+    color: white; /* Белый текст */
+    text-decoration: none;
+    border-radius: 10px; /* Скругленные углы */
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center; /* Центрирование текста */
+    font-size: 15px;
+    letter-spacing: 5px;
+    transition: 1s;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding-left: 3px;
+}
+.download-button:hover {
+    transform: scale(1) !important; /* Подъем при наведении */
+-webkit-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
+    -moz-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
+}
+/* .main-games>card-game*12>.card[style='width: 18rem;']>img.card-img-top[src='...', alt='...']+.card-body>h5.card-title{Card title}+p.card-text{Some quick example text to build on the card title and make up the bulk of the card's content.}+a.btn.btn-primary[href='#']{Go somewhere} */
+.container {
+    margin: auto;
+    background: #25211e;
+    padding: 20px;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
+    -moz-box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
+    box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
+    color: white;
+}
+
+.comment-form {
+    margin-bottom: 20px;
+}
+
+.comment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+
+    
+}
+.comments-section{
+    width: 97%;
+    color: black;
+    font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+input[type="text"],
+textarea {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838 !important;
+}
