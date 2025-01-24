@@ -11,3 +11,11 @@ card.forEach((element, id) => {
         text[id].classList.remove('hide-text-hover')
     })
 });
+let mes = document.querySelector(".error_message");
+let error = document.querySelector('.error');
+
+if (mes && error) {
+    error.addEventListener('click', function hideError() {
+        error.style.visibility = 'hidden';
+    });
+}

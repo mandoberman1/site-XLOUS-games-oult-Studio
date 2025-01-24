@@ -8,6 +8,9 @@ body{
     padding: 0;
     width: 100%;
     color: white !important;
+    font-family: "Jost", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
 }
 
 .main{
@@ -344,7 +347,21 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+.error{
+    background-color: #3b3531;
+    width: 20%;
+    padding: 1px;
+    text-align: center;
+    position: absolute;
+    border-radius: 15px;
+    border: #FFF solid 2px;
+    right: 35%;
+    transition: 0.5s;
 
+}
+.error:hover{
+    background-color: #2e2926;
+}
 button:hover {
     background-color: #218838 !important;
 }
