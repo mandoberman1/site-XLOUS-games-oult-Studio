@@ -129,12 +129,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
     transition: 1s ease;
     border-radius: 30px;
 }
-.card-game-img-hover{
-    top: 0px !important;
-    -webkit-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important; 
-    -moz-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important   ;
-    box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important    ;
-}
+
 
 .game-name {
     font-family: "Bebas Neue", sans-serif;
@@ -187,10 +182,10 @@ box-shadow: 0px 0px 73px 0px #FFF;
     transition: 1s;
 }
 .game-cover-img:hover{
-    transform: scale(0.98); /* Подъем при наведении */
-    -webkit-box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6);
-    -moz-box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6);
-    box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6);
+    transform: scale(0.98) !important; /* Подъем при наведении */
+    -webkit-box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6) !important;
+    -moz-box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6) !important;
+    box-shadow: 0px 0px 18px 8px rgba(240, 45, 45, 0.6) !important;
 }
 
 .game-cover-description{
@@ -215,10 +210,10 @@ box-shadow: 0px 0px 73px 0px #FFF;
     transition: 1s;
 }
 .game-banner-img:hover{
-    transform: scale(0.98); /* Подъем при наведении */
-    -webkit-box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6);
-    -moz-box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6);
-    box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6);
+    transform: scale(0.98) !important; /* Подъем при наведении */
+    -webkit-box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6) !important ;
+    -moz-box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6) !important;
+    box-shadow: 0px 0px 18px 8px rgba(200, 255, 0, 0.6) !important;
 }
 .wtyf{
     font-family: "Tiny5", sans-serif;
@@ -286,12 +281,16 @@ box-shadow: 0px 0px 73px 0px #FFF;
     font-style: normal;
     padding-left: 3px;
 }
-.download-button:hover {
-    transform: scale(1) !important; /* Подъем при наведении */
--webkit-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
-    -moz-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
+.card-game-img-hover:hover {
+    top: 0px !important;
     box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
 }
+
+.download-button:hover {
+    transform: scale(1.05) !important; /* Увеличение при наведении */
+    box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
+}
+
 /* .main-games>card-game*12>.card[style='width: 18rem;']>img.card-img-top[src='...', alt='...']+.card-body>h5.card-title{Card title}+p.card-text{Some quick example text to build on the card title and make up the bulk of the card's content.}+a.btn.btn-primary[href='#']{Go somewhere} */
 .container {
     margin: auto;

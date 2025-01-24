@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TapingBerta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="generator" content="Scirra Construct">
+
+    <!-- Flask автоматически подставляет путь к файлам из static -->
+    <link rel="manifest" href="{{ url_for('static', filename='appmanifest.json') }}">
+    <link rel="apple-touch-icon" sizes="128x128" href="{{ url_for('static', filename='icons/Иконка-128.png') }}">
+    <link rel="apple-touch-icon" sizes="256x256" href="{{ url_for('static', filename='icons/Иконка-256.png') }}">
+    <link rel="apple-touch-icon" sizes="512x512" href="{{ url_for('static', filename='icons/Иконка-512.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/Иконка-512.png') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head> 
+
+<body>
+
+<script>
+if (location.protocol.substr(0, 4) === "file")
+{
+    alert("Web exports won't work until you upload them. (When running on the file: protocol, browsers block many features from working for security reasons.)");
+}
+</script>
+    
+<noscript>
+    <div id="notSupportedWrap">
+        <h2 id="notSupportedTitle">This content requires JavaScript</h2>
+        <p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p>
+    </div>
+</noscript>
+
+<!-- Flask-совместимые пути к скриптам -->
+<script src="{{ url_for('static', filename='scripts/modernjscheck.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/supportcheck.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/offlineclient.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='scripts/main.js') }}" type="module"></script>
+<script src="{{ url_for('static', filename='scripts/register-sw.js') }}" type="module"></script>
+
+</body> 
+</html>
