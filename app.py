@@ -2,7 +2,6 @@ from flask import Flask, request, render_template
 import os
 from datetime import datetime
 from html import escape
-from better_profanity import profanity
 import re
 
 app = Flask(__name__, static_folder='static')
@@ -16,11 +15,11 @@ additional_profanity = [
 
 # Исходные матерные слова
 bad_words = [
-    "fuck", "shit", "bitch", "asshole", "bastard", "dick", "pussy", "cock", "cunt", "slut", 
+    "ебал","хохол", "хохлов","fuck", "shit", "bitch", "asshole", "bastard", "dick", "pussy", "cock", "cunt", "slut", 
     "whore", "fag", "gay", "nigger", "chink", "spic", "retard", "bastards", "motherfucker", 
     "goddamn", "sonofabitch", "cocksucker", "shithead", "prick", "twat", "wanker", "fucker", 
     "dipshit", "jackass", "douchebag", "cockhead", "asshat", "shitbag", "shitass", "faggot", 
-    "fucking", "bitching", "arsehole", "butthole", "crap", "cum", "jizz", "piss", "shitface", 
+    "fucking", "bitching", "arsehole", "butthole", "crap", "cum", "jizz", "piss", "shitface", "долбаёб","долбаеб","Долбаёб"
     "shitstain", "pussylicker", "bastardize", "mothereffer", "dickhead", "fuckhead", "cuntface", 
     "douche", "skank", "whorebag", "slutty", "shitfaced", "tits", "bazoongas", "boobs", "titty", 
     "beaver", "snatch", "clit", "nipples", "vagina", "penis", "fisting", "blowjob", "handjob", 
@@ -108,7 +107,7 @@ bad_words = [
     "Блядво",
     "Блядеха",
     "Блядина",
-    "Блядистка",
+    "Блядистка", "тупой", "пидрила", "хуесос", "Гандон","матьебал", "МАТЬЕБАЛ", "Матьебал",
     "Блядище",
     "Блядки",
     "Блядование",
@@ -1415,22 +1414,18 @@ bad_words = [
     "Spam",
     "Мудила",
     "Пидарасы"
-    ]
+]
 
-# Объединяем списки и создаем регулярные выражения
+# Объединяем списки
 bad_words_combined = bad_words + additional_profanity
 
-# Регулярные выражения для обхода
-profanity_patterns = []
-for word in bad_words_combined:
-    pattern = re.sub(r'[аАеЕоОсСиИтТ]', lambda m: f"[{m.group(0).lower()}{m.group(0).upper()}]", word)
-    profanity_patterns.append(r'\b' + pattern + r'\b')
+# Генерация шаблонов регулярных выражений
+profanity_patterns = [r'\b' + re.escape(word) + r'\b' for word in bad_words_combined]
 
-# Пример проверки на наличие матерных слов с обходом
+# Проверка на наличие запрещенных слов
 def contains_profanity(text):
-    # Убираем пробелы, звездочки, решетки и другие символы, пытающиеся запикать
-    text = re.sub(r'[^a-zA-Zа-яА-Я0-9а-яё\s]+', '', text)  # Убираем все не буквенные символы
-    
+    # Убираем лишние символы
+    text = re.sub(r'[^a-zA-Zа-яА-Я0-9ёЁ\s]+', '', text)
     for pattern in profanity_patterns:
         if re.search(pattern, text, re.IGNORECASE):
             return True
@@ -1505,12 +1500,11 @@ def murder():
         # Отображаем страницу с новыми данными
         return render_template('murder.html', comments=comments, user_comment=None, error_message=error_message)
 
-    # Отображаем страницу при GET запросе (или если не было ошибок при POST)
+    # Отображаем страницу при GET запросе
     context = {'active': 'murder'}
     return render_template('murder.html', comments=comments, user_comment=None, error_message=error_message, **context)
-
 @app.route('/berta-tap/', methods=['GET', 'POST'])
-def bertatap():
+def berta():
     ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
     comments = []
 
@@ -1573,8 +1567,8 @@ def bertatap():
         # Отображаем страницу с новыми данными
         return render_template('bertatap.html', comments=comments, user_comment=None, error_message=error_message)
 
-    # Отображаем страницу при GET запросе (или если не было ошибок при POST)
-    context = {'active': 'bertatap.html'}
+    # Отображаем страницу при GET запросе
+    context = {'active': 'bertatap'}
     return render_template('bertatap.html', comments=comments, user_comment=None, error_message=error_message, **context)
 
 if __name__ == '__main__':
