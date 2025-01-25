@@ -12,6 +12,94 @@ body{
     font-optical-sizing: auto;
     font-weight: 400;
 }
+/* Основные настройки адаптации */
+@media (max-width: 768px) {
+
+    .main {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 10px;
+    }
+
+    .main-game-content-left, .main-game-content-right {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .main-game-name {
+        width: 100%;
+        text-align: center;
+    }
+
+    .game-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .game-name {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+    .main-game-cover {
+        align-items: center;
+    }
+
+    .game-cover-img {
+        width: 90%;
+        height: auto;
+    }
+
+    .main-game-banner {
+        margin: 10px 0;
+    }
+
+    .game-banner-img {
+        width: 80%;
+        height: auto;
+    }
+
+    .main-download-game {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .download-button {
+        width: auto;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .game-requirements {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .comment {
+        font-size: 14px;
+    }
+
+    .error {
+        width: 80%;
+        right: 10%;
+    }
+}
 
 .main{
     background-color: #25211e;
@@ -347,21 +435,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-.error{
-    background-color: #3b3531;
-    width: 20%;
-    padding: 1px;
-    text-align: center;
-    position: absolute;
-    border-radius: 15px;
-    border: #FFF solid 2px;
-    right: 35%;
-    transition: 0.5s;
 
-}
-.error:hover{
-    background-color: #2e2926;
-}
 button:hover {
     background-color: #218838 !important;
 }

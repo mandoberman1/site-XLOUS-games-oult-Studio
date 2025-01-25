@@ -22,50 +22,53 @@
 
         {% endblock %}
        
-      <div class="container">
-      <h1>Комментарии</h1>
-      {% if error_message %}
-        <div class="error">
-          <h3 class="error_message">{{ error_message }}</h3>
-          <p class="pmes">Клик, чтобы закрыть.</p>
-        </div>
-                
-      {% endif %}
-      <form class="comment-form" method="POST">
-        <label for="username">Поле для имени пользователя</label>
-        <input 
-          type="text" 
-          id="username"
-          name="username" 
-          placeholder="Ваше имя" 
-          required 
-          value="{{ user_comment[0] if user_comment else '' }}">
-        <br>
-        <label for="comment">Поле для комментария</label>
-        <textarea 
-          id="comment"
-          name="comment" 
-          placeholder="Ваш комментарий" 
-          required>{{ user_comment[1] if user_comment else '' }}</textarea>
-        
-        <button type="submit" {% if user_comment %}disabled{% endif %}>Отправить</button>
-      </form>
-    <script src="/static/js/script.js"></script>
-      <h2>Список комментариев:</h2>
-      <div class="comments-section">
-        {% for line in comments %}
-          {% set parts = line.split('|') %}
-          <div class='comment'>
-            <strong>{{ parts[1] }}</strong> <em>({{ parts[3] }})</em>
-            <p>{{ parts[2] }}</p>
+        <div class="container">
+            <h1>Комментарии</h1>
+            <div class="comment-count">
+              <p>Количество комментариев: {{ comment_count }}</p>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul class="flashes">
+                  {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+            <form class="comment-form" method="POST">
+              <label for="username">Имя:</label>
+              <br>
+              <input type="text" id="username" name="username" placeholder="Ваше имя" required>
+            
+              <label for="comment">Комментарий:</label>
+              <textarea id="comment" name="comment" placeholder="Ваш комментарий" required></textarea>
+      
+              <button type="submit">Добавить комментарий</button>
+            </form>
+      
+            <h2>Список комментариев</h2>
+            <div class="comments-section">
+              {% for comment in comments %}
+                {% set idx = loop.index0 %}
+                {% set parts = comment.strip().split('|') %}
+                <div class="comment">
+                  <strong>{{ parts[1] }}</strong> <em>({{ parts[3] }})</em>
+                  <p>{{ parts[2] }}</p>
+            
+                  {% if parts[0] == request.remote_addr %}
+                    <form method="POST" action="/delete_comment/{{ idx }}">
+                      <button type="submit">Удалить</button>
+                    </form>
+                    <form method="POST" action="/edit_comment/{{ idx }}">
+                      <textarea name="comment" placeholder="Изменить комментарий" required>{{ parts[2] }}</textarea>
+                      <button type="submit">Изменить</button>
+                    </form>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
           </div>
-        {% endfor %}
-      </div>
-    </div>
-    </div>
-    
-
-    
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
     
   </body>
