@@ -11,3 +11,4 @@ card.forEach((element, id) => {
         text[id].classList.remove('hide-text-hover')
     })
 });
+let a = document.querySelector('.function_comment')
