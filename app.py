@@ -2,14 +2,19 @@ from flask import Flask, request, render_template, redirect, flash, url_for
 import os
 from datetime import datetime
 from html import escape
+from itertools import permutations
+from better_profanity import profanity  # Здесь используем better_profanity
+from profanity import profanity as profan  # Дополнительно для фильтрации других слов
 import re
+# Настройка better-profanity
+profanity.load_censor_words()
 
-def utility_processor():
-    return dict(enumerate=enumerate)
-
+app = Flask(__name__, static_folder='static')
+app.secret_key = 'supersecretkey123456'
+filename = 'comments.txt'
 # Уникальные матерные слова
-bad_words = [
-"ебал", "хохол", "fuck", "shit", "bitch", "asshole", "bastard", "dick", "pussy", "cock", 
+banned_words = [
+"ебал", "хохол","пенис", "fuck", "shit", "bitch", "asshole", "bastard", "dick", "pussy", "cock", 
     "cunt", "slut", "whore", "fag", "gay", "nigger", "chink", "spic", "retard", "motherfucker", 
     "goddamn", "sonofabitch", "cocksucker", "shithead", "prick", "twat", "wanker", "fucker", 
     "dipshit", "jackass", "douchebag", "cockhead", "asshat", "shitbag", "faggot", "shitstain", 
@@ -51,33 +56,10 @@ bad_words = [
     "залуповозка", "трахопот", "сракозвук", "обдриська", "жирометатель", "пукогром", 
     "залупозон", "дрислопляс", "пердокнязь", "очкопых", "сракокуча", "залупоквак", 
     "обсирунчик", "жиропупс", "пердоквакарь", "мозгохрюк", "очкомётчик", "сракопуш", 
-    "дрислоподрыв", "пукловест", "трахорезка", "залупонос", "пердолюк", "очкозавод", 
-    "обосранство", "жиропылесос", "трахофеер", "пуклопуть", "залупокосарь", "пердозвукарь", "ебать", "ебанный", "ебаный", "тупой", "шлюха", "проститука", "гандон"
+    "дрислоподрыв","сука", "сучка","пукловест", "трахорезка", "залупонос", "пердолюк", "очкозавод", 
+    "дрочка","обосранство", "жиропылесос", "трахофеер", "пуклопуть", "залупокосарь", "пердозвукарь", "ебать", "ебанный", "ебаный", "тупой", "шлюха", "проститука", "гандон"
 ]
-
-app = Flask(__name__, static_folder='static')
-app.secret_key = 'supersecretkey123456'
-filename = 'comments.txt'
-additional_profanity = [
-    "пенис", "член", "вагина", "писька", "сиськи", "сосок", "клитор", "мастурбация", "пипи", 
-    "сосать", "членосос", "фалос", "пикса", "долбежка", "членяка", "подрочить", "членушка", 
-    "пере*ать", "сосатель", "членососатель", "жопа", "жопошник", "п*ца", "петух", "кукольник", 
-    "стр**чить", "вульва", "трахать", "пор*а", "дебил", "трахаться", "п*диш"
-]
-# Объединяем списки
-bad_words_combined = bad_words + additional_profanity
-
-# Генерация шаблонов регулярных выражений
-profanity_patterns = [r'\b' + re.escape(word) + r'\b' for word in bad_words_combined]
-
-# Проверка на наличие запрещенных слов
-def contains_profanity(text):
-    # Убираем лишние символы
-    text = re.sub(r'[^a-zA-Zа-яА-Я0-9ёЁ\s]+', '', text)
-    for pattern in profanity_patterns:
-        if re.search(pattern, text, re.IGNORECASE):
-            return True
-    return False
+profanity.load_censor_words(banned_words)  # Загружаем твой список в better_profanity
 
 # Функция для чтения комментариев
 def read_comments():
@@ -95,6 +77,7 @@ def check_ip(ip):
         if stored_ip == ip:
             return True
     return False
+
 # Проверка на одинаковые имена
 def check_duplicate_name(username):
     comments = read_comments()
@@ -103,14 +86,103 @@ def check_duplicate_name(username):
         if stored_username.lower() == username.lower():
             return True
     return False
+
+
+# Полный список замен символов на буквы
+replacements = {
+    'а': ["аa@4",'а', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'б': ['б', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'в': ['в', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'г': ['г', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'д': ['д', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'е': ['е', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'ж': ['ж', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'з': ['з', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'и': ['и', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'й': ['й', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'к': ['к', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'л': ['л', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'м': ['м', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'н': ['н', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'о': ['о','0', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'п': ['п', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'р': ['р', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'с': ['с', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'т': ['т', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'у': ['у', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'ф': ['ф', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'х': ['х', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'ц': ['ц', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'ч': ['ч', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*', '-', '+', "'", '[', ']'],
+    'ш': ['ш', '№', ';', '%', ':', '?', '*', '(', ')', '!', '@', '/', '*',]
+}
+def normalize(text):
+    """Функция нормализации текста: убирает пробелы и приводит к нижнему регистру"""
+    return text.replace(" ", "").lower()
+
+
+def check_duplicate_name(username):
+    """Проверка на одинаковые имена с учётом замены символов"""
+    comments = read_comments()
+    for comment in comments:
+        _, stored_username, _, _ = comment.strip().split('|')
+        # Проверяем как нормализованные версии, так и с учётом замены символов
+        normalized_username = normalize(username)
+        normalized_stored_username = normalize(stored_username)
+        if normalized_username == normalized_stored_username:
+            return True
+    return False
+
+def remove_repeated_letters(text):
+    return re.sub(r'(.)\1+', r'\1', text)
+
+
+def generate_permutations(text):
+    """Создаёт всевозможные перестановки частей текста"""
+    words = text.split()
+    all_permutations = set()
+    for i in range(1, len(words) + 1):
+        for perm in permutations(words, i):
+            all_permutations.add(''.join(perm))
+    return all_permutations
+
+def replace_chars(word, replacements):
+    """Заменяет символы на возможные альтернативы"""
+    pattern = ''.join([f"[{''.join(re.escape(c) for c in replacements.get(char, char))}]" for char in word])
+    return pattern
+
+def check_profanity(comment, banned_words, replacements):
+    """Проверяет комментарий на запрещённые слова с учётом повторяющихся букв и разбивки"""
+    normalized_comment = remove_repeated_letters(comment)
+    variations = generate_permutations(normalized_comment)
+    variations.add(normalized_comment)  # Добавляем исходный текст
+    
+    for variation in variations:
+        words = variation.split()
+        for word in words:
+            for banned_word in banned_words:
+                pattern = replace_chars(banned_word, replacements)
+                if re.search(pattern, word, re.IGNORECASE):
+                    print(f"Мат найден: {word}")
+                    return True
+    
+    if any(profanity.contains_profanity(variation) for variation in variations):
+        return True
+    
+    return False
+
 @app.route('/')
 def index():
     context = {'active': 'index'}
     return render_template('index.html', **context)
 
+@app.route('/berta-game/')
+def bertagame():
+    context = {'active': 'berta-game'}
+    return render_template('berta-game.html', **context)
+
 @app.route('/murder/', methods=['GET', 'POST'])
 def murder():
-    # Чтение комментариев
     comments = read_comments()
     comment_count = len(comments)  # Считаем количество комментариев
     ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()  # Получаем IP пользователя
@@ -119,24 +191,22 @@ def murder():
         username = escape(request.form['username'].strip())
         comment = escape(request.form['comment'].strip())
 
-        # Проверка, был ли уже комментарий от этого IP
         if check_ip(ip):
             flash('Вы уже оставили комментарий.', 'error')
             return redirect(url_for('murder'))
-         # Проверка на одинаковые имена
+
         if check_duplicate_name(username):
             flash('Пользователь с таким именем уже оставил комментарий.', 'error')
             return redirect(url_for('murder'))
-        
-        # Проверка на пустое имя и комментарий
+
         if not username:
             flash('Имя не может быть пустым.', 'error')
-        elif contains_profanity(username):
-            flash('Имя содержит запрещенные слова.', 'error')
+        elif check_profanity(username, banned_words, replacements):
+            flash('Имя содержит запрещённые слова.', 'error')
         elif not comment:
             flash('Комментарий не может быть пустым.', 'error')
-        elif contains_profanity(comment):
-            flash('Комментарий содержит запрещенные слова.', 'error')
+        elif check_profanity(comment, banned_words, replacements):
+            flash('Комментарий содержит запрещённые слова.', 'error')
         else:
             # Добавляем новый комментарий
             new_comment = f"{ip}|{username}|{comment}|{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
@@ -146,13 +216,10 @@ def murder():
             flash('Комментарий успешно добавлен.', 'success')
             return redirect(url_for('murder'))
 
-    # Отдаем IP для проверки в шаблоне
     return render_template('murder.html', comments=comments, comment_count=comment_count, user_ip=ip)
-
 
 @app.route('/berta-tap/', methods=['GET', 'POST'])
 def berta():
-    # Чтение комментариев
     comments = read_comments()
     comment_count = len(comments)
     ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
@@ -164,18 +231,19 @@ def berta():
         if check_ip(ip):
             flash('Вы уже оставили комментарий.', 'error')
             return redirect(url_for('berta'))
-         # Проверка на одинаковые имена
+
         if check_duplicate_name(username):
             flash('Пользователь с таким именем уже оставил комментарий.', 'error')
             return redirect(url_for('berta'))
+
         if not username:
             flash('Имя не может быть пустым.', 'error')
-        elif contains_profanity(username):
-            flash('Имя содержит запрещенные слова.', 'error')
+        elif check_profanity(username, banned_words, replacements):
+            flash('Имя содержит запрещённые слова.', 'error')
         elif not comment:
             flash('Комментарий не может быть пустым.', 'error')
-        elif contains_profanity(comment):
-            flash('Комментарий содержит запрещенные слова.', 'error')
+        elif check_profanity(comment, banned_words, replacements):
+            flash('Комментарий содержит запрещённые слова.', 'error')
         else:
             new_comment = f"{ip}|{username}|{comment}|{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
             with open(filename, 'a') as f:
@@ -185,7 +253,6 @@ def berta():
             return redirect(url_for('berta'))
 
     return render_template('bertatap.html', comments=comments, comment_count=comment_count, user_ip=ip)
-
 
 @app.route('/delete_comment/<int:comment_id>', methods=['POST'])
 def delete_comment(comment_id):
@@ -200,12 +267,10 @@ def delete_comment(comment_id):
         flash('Комментарий не найден.', 'error')
         return redirect(request.referrer or '/')
 
-    # Получаем IP пользователя
     ip = request.headers.get('X-Real-IP') or \
          request.headers.get('X-Forwarded-For', '').split(',')[0].strip() or \
          request.remote_addr
 
-    # Проверяем сохраненный IP в комментарии
     stored_ip, _, _, _ = comments[comment_id].strip().split('|')
 
     if stored_ip != ip:
@@ -217,9 +282,8 @@ def delete_comment(comment_id):
     with open(filename, 'w') as f:
         f.writelines(comments)
 
-    flash('Комментарий успешно удален.', 'success')
+    flash('Комментарий успешно удалён.', 'success')
     return redirect(request.referrer or '/')
-
 
 @app.route('/edit_comment/<int:comment_id>', methods=['POST'])
 def edit_comment(comment_id):
@@ -234,12 +298,10 @@ def edit_comment(comment_id):
         flash('Комментарий не найден.', 'error')
         return redirect(request.referrer or '/')
 
-    # Получаем IP пользователя
     ip = request.headers.get('X-Real-IP') or \
          request.headers.get('X-Forwarded-For', '').split(',')[0].strip() or \
          request.remote_addr
 
-    # Проверяем сохранённый IP в комментарии
     stored_ip, _, _, _ = comments[comment_id].strip().split('|')
 
     if stored_ip != ip:
@@ -252,11 +314,10 @@ def edit_comment(comment_id):
         flash('Комментарий не может быть пустым.', 'error')
         return redirect(request.referrer or '/')
 
-    if contains_profanity(new_comment):
+    if check_profanity(new_comment, banned_words, replacements):
         flash('Комментарий содержит запрещённые слова.', 'error')
         return redirect(request.referrer or '/')
 
-    # Обновляем комментарий
     parts = comments[comment_id].strip().split('|')
     parts[2] = new_comment
     parts[3] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
