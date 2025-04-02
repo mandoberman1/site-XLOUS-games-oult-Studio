@@ -10,12 +10,14 @@ card.forEach((element, id) => {
         img[id].classList.remove('card-game-img-hover')
         text[id].classList.remove('hide-text-hover')
     })
+})
+let a = [
+    'Версия 1.0 Создание игры',
+    'Обновление 1.2 Исправление ошибок'
+];
+
+let listUp = document.querySelector('.list-updates');
+
+a.forEach(function(item){
+    listUp.innerHTML += `<p>${item}</p>`;
 });
-let a = document.querySelector('.function_comment')
-
-let b = [214, 216, 216, 217, 218, 218, 218, 219, 220, 220, 220, 221, 222, 223, 224, 225, 225, 225, 225, 227, 227, 228, 228, 228, 231];
-
-// Используем метод reduce для суммирования всех элементов массива
-let sum = b.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-console.log(sum); // Выводим сумму

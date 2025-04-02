@@ -10,7 +10,7 @@ import re
 profanity.load_censor_words()
 
 app = Flask(__name__, static_folder='static')
-app.secret_key = 'supersecretkey123456'
+app.secret_key = 'supersecretkey123476'
 filename = 'comments.txt'
 # Уникальные матерные слова
 banned_words = [

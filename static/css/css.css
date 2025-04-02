@@ -11,6 +11,7 @@ body{
     font-family: "Jost", serif;
     font-optical-sizing: auto;
     font-weight: 400;
+    
 }
 /* Основные настройки адаптации */
 @media (max-width: 1028px) {
@@ -361,11 +362,12 @@ box-shadow: 0px 0px 73px 0px #FFF;
     font-weight: 400;
     font-style: normal;
     display: flex;
-    flex-direction: column;
+    justify-content:space-between;
     margin: 0 25%;
 }
 .game-requirements li{
     list-style-type: symbols();
+
 }
 
 .main-game-content-left{
@@ -378,7 +380,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
 .main-game-content-right{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 55%;
     height: 100%;
     justify-content: center;
     margin-top: 5px;
@@ -422,7 +424,60 @@ box-shadow: 0px 0px 73px 0px #FFF;
     transform: scale(1.05) !important; /* Увеличение при наведении */
     box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
 }
+.main-btn-updates {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 20px 0 0 20px;
+}
 
+.btn-updates {
+    width: 50px;
+    height: 50px;
+    background-image: url("/static/icons/документ.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+.btn-updates:hover {
+    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.6);
+}
+
+.window-updates {
+    position: absolute;
+    background-color: #36302b;
+    border-radius: 15px;
+    padding: 15px;
+    border: 2px solid black;
+    top: 60px; /* ниже кнопки */
+    left: -150px;
+    max-width: 200px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: 0.3s ease;
+    z-index: 10;
+}
+
+.main-btn-updates:hover .window-updates {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.list-updates P{
+    font-size: 18px;
+
+}
+
+.opacity-update{
+    opacity: 0;
+}
 /* .main-games>card-game*12>.card[style='width: 18rem;']>img.card-img-top[src='...', alt='...']+.card-body>h5.card-title{Card title}+p.card-text{Some quick example text to build on the card title and make up the bulk of the card's content.}+a.btn.btn-primary[href='#']{Go somewhere} */
 .container {
     margin: auto;
