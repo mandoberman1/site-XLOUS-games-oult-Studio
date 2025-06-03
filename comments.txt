@@ -1,0 +1,27 @@
+[
+  {
+    "username": "вы",
+    "comment": "вы",
+    "ip": "::1"
+  },
+  {
+    "username": "вы",
+    "comment": "вы",
+    "ip": "::1"
+  },
+  {
+    "username": "w",
+    "comment": "w",
+    "ip": "::1"
+  },
+  {
+    "username": "d",
+    "comment": "d",
+    "ip": "::1"
+  },
+  {
+    "username": "s",
+    "comment": "s",
+    "ip": "::1"
+  }
+]
