@@ -1,37 +1,3 @@
 [
-  {
-    "username": " ",
-    "comment": " ",
-    "ip": "::1"
-  },
-  {
-    "username": "fds",
-    "comment": "fds",
-    "ip": "::1"
-  },
-  {
-    "username": "я тово мать ебал",
-    "comment": "в",
-    "ip": "::1"
-  },
-  {
-    "username": "ебанный волшебник",
-    "comment": "субару",
-    "ip": "::1"
-  },
-  {
-    "username": "пошел нахуй",
-    "comment": "пав",
-    "ip": "::1"
-  },
-  {
-    "username": "выф",
-    "comment": "выф",
-    "ip": "::1"
-  },
-  {
-    "username": "superpidor1337",
-    "comment": "выф",
-    "ip": "::1"
-  }
+  
 ]
