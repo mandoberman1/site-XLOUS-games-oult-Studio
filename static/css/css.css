@@ -150,7 +150,7 @@ body{
 box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
 }
 .BASE{
-
+    
     margin: 40px 0;
 }
 .main-site{
@@ -434,7 +434,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
 .btn-updates {
     width: 50px;
     height: 50px;
-    background-image: url("/static/icons/документ.png");
+    background-image: url("/icons/документ.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

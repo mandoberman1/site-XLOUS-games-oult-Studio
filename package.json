@@ -1,0 +1,26 @@
+{
+  "name": "site-xlous-games-oult-studio",
+  "version": "1.0.0",
+  "description": "Сайт студии xlous games oult studio",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mandoberman1/site-XLOUS-games-oult-Studio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mandoberman1/site-XLOUS-games-oult-Studio/issues"
+  },
+  "homepage": "https://github.com/mandoberman1/site-XLOUS-games-oult-Studio#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "path": "^0.12.7",
+    "request-ip": "^3.3.0",
+    "sqlite3": "^5.1.7"
+  }
+}
