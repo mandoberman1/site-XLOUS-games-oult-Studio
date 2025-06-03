@@ -71,25 +71,7 @@
                 </div>
                 
                 <h1>Welcome!</h1>
-                <form method="POST" action="/register" class="form_reg_in">
-                  <label for="input">Email</label>
-                  <input required type="text" name="email">
-                  <label class="createpass" for="input">Create Password</label>
-                  <input required type="text" name="Password">
-                  <label for="input" class="Con-Password">Confirm Password</label>
-                  <input required type="text" class="Con-Password" name="Con-Password">
-                  <div class="btns">
-                    <button type="submit" class="reg_in ">Зарегистрироваться</button>
-                    <button type="button" class="edit_reg ">Перейти на вход</button>
-                  </div>
-                  <% if (typeof user !== 'undefined') { %>
-                    <p>Вы вошли как: <%= user.email %></p>
-                    <a href="/logout">Выйти</a>
-                  <% } else { %>
-                    <p>Вы не вошли</p>
-                  <% } %>
-
-                </form>
+                <h2 class="hide-ip" onclick="showIp()">Your ip: <%= ip %></h2>
               </div>
             </div>
             

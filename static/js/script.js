@@ -22,33 +22,7 @@ a.forEach(function(item){
     listUp.innerHTML += `<p>${item}</p>`;
 });
 
-const btnEdit = document.querySelector('.edit_reg');
-const btnSub = document.querySelector('.reg_in');
-const form = document.querySelector('.form_reg_in');
-const conPassword = document.querySelectorAll('.Con-Password')
-const createpass = document.querySelector('.createpass')
 
-btnEdit.addEventListener('click', () => {
-  if (btnEdit.classList.contains('edit_reg')) {
-    btnEdit.textContent = 'Перейти на регистрацию';
-    btnSub.textContent = 'Вход';
-    form.setAttribute('action', '/login');
-    btnEdit.classList.remove('edit_reg');
-    conPassword.forEach((i) => {
-        i.style.visibility = 'hidden'
-    })
-    createpass.textContent = 'Password'
-  } else {
-    btnEdit.textContent = 'Перейти на вход';
-    btnSub.textContent = 'Зарегистрироваться';
-    form.setAttribute('action', '/register');
-    btnEdit.classList.add('edit_reg');
-    conPassword.forEach((i) => {
-        i.style.visibility = 'visible'
-    })
-    createpass.textContent = 'Create password'
-  }
-});
 
 const accImg = document.querySelector('.img-acc')
 const autor = document.querySelector('.with_autor')
@@ -61,3 +35,12 @@ let hide = () => {
 
 accImg.addEventListener('click', hide)
 lines.addEventListener('click', hide)
+
+let hideIp = document.querySelector('.hide-ip')
+normIp = hideIp.textContent
+hideIp.textContent = 'Your Ip: ***:***:***'
+console.log(normIp);
+
+function showIp(){
+    hideIp.textContent = normIp
+}
