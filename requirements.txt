@@ -1,6 +1,0 @@
-Flask
-gunicorn
-better-profanity
-profanity-check
-profanity
-datetime
