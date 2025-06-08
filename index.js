@@ -94,7 +94,7 @@ app.set('trust proxy', true);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('static'));
 
-const COMMENTS_FILE = './comments.txt';
+const COMMENTS_FILE = './comments.json';
 const routes = {
     'murder': {icon:'murder.jpg',title: 'Murder Time' },
     'bertatap': {icon:'bertatap.jpg', title: 'Bezhik-Tap' },
@@ -220,8 +220,11 @@ app.post('/add', (req, res) => {
         return res.redirect(url);
     }
 
+    const now = new Date();
+    const dateTime = now.toLocaleString()
+    console.log(dateTime); // Например: "08.06.2025, 15:34:56"
 
-    const newComment = { username, comment, ip };
+    const newComment = { username, comment, ip, dateTime };
     saveComment(newComment);
     flash = " комментарий добавлен";
     res.redirect(url);

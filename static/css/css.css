@@ -567,6 +567,10 @@ box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
     justify-content: center !important;
     align-items: center;
 }
+.comment-name-date{
+    display: flex;
+    justify-content: space-between;
+}
 
 .hidden{
     visibility: hidden ;

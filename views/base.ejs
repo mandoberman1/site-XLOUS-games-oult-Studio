@@ -45,7 +45,9 @@
                  <% comments.forEach(item => { %>
                   
                   <div class="comment">
-                    <strong><%= item.username %></strong>
+                    <div class="comment-name-date">
+                      <strong class="left-name"><%= item.username %></strong><em class="right-date">Дата, время: <%= item.dateTime %></em>
+                    </div>
                     <p><%= item.comment %></p>
                       <% if(item.ip == ip){ %>
                       <div class="function_comment">
