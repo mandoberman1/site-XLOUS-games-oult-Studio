@@ -48,14 +48,22 @@
                     <div class="comment-name-date">
                       <strong class="left-name"><%= item.username %></strong><em class="right-date">Дата: <%=item.date%>, Время(UTC+3): <%= item.time %></em>
                     </div>
-                    <p><%= item.comment %></p>
+                    <p><%- item.comment %> <i><sup><%= item.flashEdit %></sup></i></p>
                       <% if(item.ip == ip){ %>
                       <div class="function_comment">
                       <details>
-                        <summary>Меню удаления</summary>
+                        <summary>Меню редактирования и удаления.</summary>
+                        <div class="editDelete">
                         <form method="POST" action="/delete">
-                        <button type="submit">Удалить</button>
-                      </form>
+                          <button class="delete" type="submit">Удалить</button>
+                        </form>
+                        <form action="/edit" method="POST">
+                          <input style="display: none;" name="username" value="<%= item.username %>" type="text">
+                          <input type="text" name="comment" required value="<%= item.comment %>">
+                          <button class="edit" type="submit">Редактировать</button>
+                        </form>  
+                        </div>
+                        
                       </details>
                       
                     </div>

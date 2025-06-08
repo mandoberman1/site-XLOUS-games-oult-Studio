@@ -100,9 +100,26 @@ const routes = {
     'bertatap': {icon:'bertatap.jpg', title: 'Bezhik-Tap' },
 };
 
+function containsBadWords(text) {
+    if (!text) return false;
+    // Нормализация текста
+    const cleaned = text
+        .toLowerCase()
+        .replace(/[^а-яa-zё0-9]/gi, '') // удаляем всё кроме букв и цифр
+        .replace(/\s+/g, ''); // убираем пробелы (на всякий случай)
 
+    // Проверка каждого подслова (например: "superpidor1337" или "лохотрон")
+    for (let i = 0; i < cleaned.length; i++) {
+        for (let j = i + 3; j <= cleaned.length; j++) { // минимум 3 буквы — чтоб не триггерило по "ан"
+            const part = cleaned.slice(i, j);
+            if (leoProfanity.check(part)) {
+                return true;
+            }
+        }
+    }
 
-
+    return false;
+    }
 
 function readComments() {
     if (!fs.existsSync(COMMENTS_FILE)) return [];
@@ -121,6 +138,13 @@ function saveComment(comment) {
     fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2), 'utf8');
 }
 
+function editComment(comment){
+    const comments = readComments();
+    let editIndex = comments.findIndex(c => c.ip == comment.ip)
+    comments.splice(editIndex, 1, comment)
+    fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2), 'utf8');
+}
+
 app.get('/', (req, res) => {
     res.render('index');
 });
@@ -133,6 +157,7 @@ let allIp;
 let comments;
 let ip;
 let index;
+let flashEdit = ''
 
 app.get('/:url', (req, res) => {
     url = req.params.url;
@@ -159,6 +184,7 @@ app.get('/:url', (req, res) => {
         allIp: allIp,
         script:script,
         icon: icon,
+        flashEdit: flashEdit,
         length: comments.length,
         flash: flash || ' нет',
     });
@@ -193,28 +219,6 @@ app.post('/add', (req, res) => {
         return res.redirect(url);
     }
 
-    function containsBadWords(text) {
-    if (!text) return false;
-
-    // Нормализация текста
-    const cleaned = text
-        .toLowerCase()
-        .replace(/[^а-яa-zё0-9]/gi, '') // удаляем всё кроме букв и цифр
-        .replace(/\s+/g, ''); // убираем пробелы (на всякий случай)
-
-    // Проверка каждого подслова (например: "superpidor1337" или "лохотрон")
-    for (let i = 0; i < cleaned.length; i++) {
-        for (let j = i + 3; j <= cleaned.length; j++) { // минимум 3 буквы — чтоб не триггерило по "ан"
-            const part = cleaned.slice(i, j);
-            if (leoProfanity.check(part)) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
     if (containsBadWords(comment) || containsBadWords(username)) {
         flash = " имя или комментарий содержит ненормативную лексику.";
         return res.redirect(url);
@@ -225,9 +229,10 @@ app.post('/add', (req, res) => {
     const resultDt = dateTime.split(',')
     const date = resultDt[0]
     const time = resultDt[1].slice(1, -3)
+    flashEdit = ''
     console.log(dateTime); // Например: "08.06.2025, 15:34:56"
 
-    const newComment = { username, comment, ip, date, time };
+    const newComment = { username, comment, ip, date, time, flashEdit };
     saveComment(newComment);
     flash = " комментарий добавлен";
     res.redirect(url);
@@ -241,6 +246,37 @@ app.post('/delete', (req,res) => {
     flash = ' ваш комментарий удалён. Можете написать новый)'
     res.redirect(url)
 })
+
+app.post('/edit', (req, res) => {
+    const ip = req.ip;
+    const {username, comment } = req.body;
+
+    if (comment == '') {
+        flash = " заполните все поля";
+        return res.redirect(url);
+    }
+
+    const comments = readComments();
+
+
+    if (containsBadWords(comment)) {
+        flash = " имя или комментарий содержит ненормативную лексику.";
+        return res.redirect(url);
+    }
+
+    const now = new Date();
+    const dateTime = now.toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
+    const resultDt = dateTime.split(',')
+    const date = resultDt[0]
+    const time = resultDt[1].slice(1, -3)
+    flashEdit = 'изменён'
+    console.log(dateTime); // Например: "08.06.2025, 15:34:56"
+
+    const newComment = { username, comment, ip, date, time, flashEdit };
+    editComment(newComment);
+    flash = " комментарий изменен";
+    res.redirect(url);
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -14,6 +14,14 @@ body{
     
 }
 /* Основные настройки адаптации */
+@media(max-width: 513px){
+    .editDelete{
+        flex-direction: column !important;
+    }
+    .delete{
+        margin: 10px 0 !important;
+    }
+}
 @media (max-width: 1028px) {
 
     .main-game {
@@ -588,6 +596,9 @@ box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
     display: flex;
     justify-content: space-between;
 }
+.comment-name-date em{
+    text-align: right;
+}
 
 .hidden{
     visibility: hidden ;
@@ -610,4 +621,14 @@ box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
     width: 30px;
     background-color: white;
     transform: rotate(-45deg);
+}
+.editDelete{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.delete{
+    margin: 5px 0 0 10px;
+    
 }
