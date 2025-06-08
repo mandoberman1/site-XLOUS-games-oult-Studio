@@ -6,7 +6,6 @@ const nodemailer = require('nodemailer');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-const { user } = require('pg/lib/defaults.js');
 const leoProfanity = require('leo-profanity');
 const extraRU = [
     'ебал','ебать','петух','гандон','сынша лавы','дочьша лавы','трах', 'пенис','трахнул','матье бал','ягит лер',"трахал",'япи дорас','яша лава','яна члене','пидорас','япидорас','япидор','я пидор','пидорас','абортыш','абортышь','шаболда','ебанная','ебанный','ебаная','ебаный','пенис','','','','','','','','пидор', 'пидр', 'хуй', 'хер', 'ебать', 'ебан', 'ебло', 'гандон',
@@ -88,19 +87,13 @@ const extraRU = [
 leoProfanity.add(leoProfanity.getDictionary('ru'));
 leoProfanity.add(extraRU);
 
-let functionComment = '<div class="function_comment"><details><summary>Меню удаления</summary><form method="POST" action="/delete"><button type="submit">Удалить</button></form></div>'
+let script = '<script src="/js/script.js"></script>'
 
 const USERS_FILE = './users.json';
 app.set('view engine', 'ejs');
 app.set('trust proxy', true);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('static'));
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // В Railway можно сделать true с HTTPS
-}));
 
 const COMMENTS_FILE = './comments.txt';
 const routes = {
@@ -164,6 +157,7 @@ app.get('/:url', (req, res) => {
         comments,
         ip:ip,
         allIp: allIp,
+        script:script,
         length: comments.length,
         flash: flash || ' нет',
     });
