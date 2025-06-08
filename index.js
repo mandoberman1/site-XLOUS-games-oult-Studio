@@ -221,10 +221,13 @@ app.post('/add', (req, res) => {
     }
 
     const now = new Date();
-    const dateTime = now.toLocaleString()
+    const dateTime = now.toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
+    const resultDt = dateTime.split(',')
+    const date = resultDt[0]
+    const time = resultDt[1].slice(1, -3)
     console.log(dateTime); // Например: "08.06.2025, 15:34:56"
 
-    const newComment = { username, comment, ip, dateTime };
+    const newComment = { username, comment, ip, date, time };
     saveComment(newComment);
     flash = " комментарий добавлен";
     res.redirect(url);

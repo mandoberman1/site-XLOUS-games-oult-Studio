@@ -46,7 +46,7 @@
                   
                   <div class="comment">
                     <div class="comment-name-date">
-                      <strong class="left-name"><%= item.username %></strong><em class="right-date">Дата, время: <%= item.dateTime %></em>
+                      <strong class="left-name"><%= item.username %></strong><em class="right-date">Дата: <%=item.date%>, Время(UTC+3): <%= item.time %></em>
                     </div>
                     <p><%= item.comment %></p>
                       <% if(item.ip == ip){ %>
