@@ -7,8 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const leoProfanity = require('leo-profanity');
-const extraRU = [
-    'ебал','ебать','петух','гандон','сынша лавы','дочьша лавы','трах', 'пенис','трахнул','матье бал','ягит лер',"трахал",'япи дорас','яша лава','яна члене','пидорас','япидорас','япидор','я пидор','пидорас','абортыш','абортышь','шаболда','ебанная','ебанный','ебаная','ебаный','пенис','','','','','','','','пидор', 'пидр', 'хуй', 'хер', 'ебать', 'ебан', 'ебло', 'гандон',
+const extraRU = ['ялда' ,'ебал','ебать','петух','гандон','сынша лавы','дочьша лавы','трах', 'пенис','трахнул','матье бал','ягит лер',"трахал",'япи дорас','яша лава','яна члене','пидорас','япидорас','япидор','я пидор','пидорас','абортыш','абортышь','шаболда','ебанная','ебанный','ебаная','ебаный','пенис','','','','','','','','пидор', 'пидр', 'хуй', 'хер', 'ебать', 'ебан', 'ебло', 'гандон',
     'мудила', 'сука', 'сучка', 'блядь', 'блять', 'хуесос', 'долбаеб',
     'долбоеб', 'даун', 'ебанат', 'пошелнах', 'нахуй', 'нахер', 'уебище',
     'уёбище', 'гавно', 'говно', 'мудак', 'пидрила', 'ебака', 'херня',
@@ -84,12 +83,12 @@ const extraRU = [
 
 ];
 
+
 leoProfanity.add(leoProfanity.getDictionary('ru'));
 leoProfanity.add(extraRU);
 
 let script = '<script src="/js/script.js"></script>'
 
-const USERS_FILE = './users.json';
 app.set('view engine', 'ejs');
 app.set('trust proxy', true);
 app.use(express.urlencoded({ extended: false }));
@@ -97,8 +96,8 @@ app.use(express.static('static'));
 
 const COMMENTS_FILE = './comments.txt';
 const routes = {
-    'murder': { view: 'murder', title: 'Murder Time' },
-    'bertatap': { view: 'bertatap', title: 'Bezhik-Tap' },
+    'murder': {icon:'murder.jpg',title: 'Murder Time' },
+    'bertatap': {icon:'bertatap.jpg', title: 'Bezhik-Tap' },
 };
 
 
@@ -138,11 +137,12 @@ let index;
 app.get('/:url', (req, res) => {
     url = req.params.url;
     const route = routes[url];
-
+    const icon = route.icon
     if (!route) {
         return res.status(404).send('Страница не найдена 😿');
     }
-
+    console.log(route);
+    
     const title = route.title;
     const body = fs.readFileSync(`views/${url}.ejs`, 'utf-8');
     const base = fs.readFileSync(`views/base.ejs`, 'utf-8');
@@ -158,6 +158,7 @@ app.get('/:url', (req, res) => {
         ip:ip,
         allIp: allIp,
         script:script,
+        icon: icon,
         length: comments.length,
         flash: flash || ' нет',
     });
@@ -239,3 +240,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Сервер запущен: http://localhost:${PORT}`);
 });
+// Тут всё понятно)
