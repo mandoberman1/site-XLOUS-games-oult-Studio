@@ -38,9 +38,19 @@ lines.addEventListener('click', hide)
 
 let hideIp = document.querySelector('.hide-ip')
 normIp = hideIp.textContent
-hideIp.textContent = 'Your Ip: ***:***:***'
-console.log(normIp);
+hideIp.textContent = 'Your ip: ***:***:***'
+
 
 function showIp(){
     hideIp.textContent = normIp
 }
+
+let allIp = document.querySelector('.allIp').value.split(',')
+let currentIp = normIp.replace('Your ip: ', '')
+let form = document.querySelector('.comment-form')
+
+allIp.forEach((el) => {
+    if(el == currentIp){
+        form.remove()
+    }
+})

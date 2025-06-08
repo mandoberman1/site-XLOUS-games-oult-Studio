@@ -9,7 +9,7 @@ const session = require('express-session');
 const { user } = require('pg/lib/defaults.js');
 const leoProfanity = require('leo-profanity');
 const extraRU = [
-    'ебал','ебать','','','','','', 'пенис','япи дорас','яша лава','яна члене','пидорас','япидорас','япидор','я пидор','пидорас','абортыш','абортышь','шаболда','ебанная','ебанный','ебаная','ебаный','пенис','','','','','','','','пидор', 'пидр', 'хуй', 'хер', 'ебать', 'ебан', 'ебло', 'гандон',
+    'ебал','ебать','петух','гандон','сынша лавы','дочьша лавы','трах', 'пенис','трахнул','матье бал','ягит лер',"трахал",'япи дорас','яша лава','яна члене','пидорас','япидорас','япидор','я пидор','пидорас','абортыш','абортышь','шаболда','ебанная','ебанный','ебаная','ебаный','пенис','','','','','','','','пидор', 'пидр', 'хуй', 'хер', 'ебать', 'ебан', 'ебло', 'гандон',
     'мудила', 'сука', 'сучка', 'блядь', 'блять', 'хуесос', 'долбаеб',
     'долбоеб', 'даун', 'ебанат', 'пошелнах', 'нахуй', 'нахер', 'уебище',
     'уёбище', 'гавно', 'говно', 'мудак', 'пидрила', 'ебака', 'херня',
@@ -88,7 +88,7 @@ const extraRU = [
 leoProfanity.add(leoProfanity.getDictionary('ru'));
 leoProfanity.add(extraRU);
 
-
+let functionComment = '<div class="function_comment"><details><summary>Меню удаления</summary><form method="POST" action="/delete"><button type="submit">Удалить</button></form></div>'
 
 const USERS_FILE = './users.json';
 app.set('view engine', 'ejs');
@@ -137,6 +137,10 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 let url;
 let flash;
+let allIp;
+let comments;
+let ip;
+let index;
 
 app.get('/:url', (req, res) => {
     url = req.params.url;
@@ -149,14 +153,17 @@ app.get('/:url', (req, res) => {
     const title = route.title;
     const body = fs.readFileSync(`views/${url}.ejs`, 'utf-8');
     const base = fs.readFileSync(`views/base.ejs`, 'utf-8');
-    const ip = req.ip;
-
-    const comments = readComments();
+    ip = req.ip;
+    comments = readComments();
+    allIp = comments.map(c => c.ip)
+    console.log(allIp , ip);
+    
     const html = ejs.render(base, {
         title,
         body,
         comments,
         ip:ip,
+        allIp: allIp,
         length: comments.length,
         flash: flash || ' нет',
     });
@@ -172,7 +179,7 @@ app.post('/add', (req, res) => {
     const { username, comment } = req.body;
 
     if (username == '' || comment == '' || username == ' ' || comment == ' ') {
-        flash = "Заполните все поля";
+        flash = " заполните все поля";
         return res.redirect(url);
     }
 
@@ -214,7 +221,7 @@ app.post('/add', (req, res) => {
 }
 
     if (containsBadWords(comment) || containsBadWords(username)) {
-        flash = "Имя или комментарий содержит ненормативную лексику.";
+        flash = " имя или комментарий содержит ненормативную лексику.";
         return res.redirect(url);
     }
 
@@ -225,6 +232,14 @@ app.post('/add', (req, res) => {
     res.redirect(url);
 });
 
+
+app.post('/delete', (req,res) => {
+    index = comments.findIndex(c => c.ip == ip)
+    comments.splice(index, 1)
+    fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2), 'utf8');
+    flash = ' ваш комментарий удалён. Можете написать новый)'
+    res.redirect(url)
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

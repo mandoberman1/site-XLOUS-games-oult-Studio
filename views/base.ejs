@@ -43,20 +43,24 @@
             <div class="comments-section">
                 
                  <% comments.forEach(item => { %>
+                  
                   <div class="comment">
                     <strong><%= item.username %></strong>
                     <p><%= item.comment %></p>
+                      <% if(item.ip == ip){ %>
+                      <div class="function_comment">
+                      <details>
+                        <summary>Меню удаления</summary>
+                        <form method="POST" action="/delete">
+                        <button type="submit">Удалить</button>
+                      </form>
+                      </details>
+                      
+                    </div>
+                    <% } %> 
                   </div>
                 <% }) %>
-                  <div class="function_comment">
-                    <details>
-                      <summary>Меню редактирования и удаления</summary>
-                      <form method="POST" action="/delete">
-                      <button type="submit">Удалить</button>
-                    </form>
-                    </details>
-                    
-                  </div>
+                  <input class="allIp hidden" type="text" value="<%= allIp %>">
       
                 
             </div>
