@@ -138,11 +138,19 @@ function saveComment(comment) {
     fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2), 'utf8');
 }
 
-function editComment(comment){
+function editComment(comment,res){
     const comments = readComments();
     let editIndex = comments.findIndex(c => c.ip == comment.ip)
-    comments.splice(editIndex, 1, comment)
-    fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2), 'utf8');
+    if(comments[editIndex].comment == comment.comment){
+        flash = " комментарий не был изменен";
+        res.redirect(url);
+    }else{
+        comments.splice(editIndex, 1, comment)
+        fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2), 'utf8');
+        flash = " комментарий изменен";
+        res.redirect(url);
+    }
+    
 }
 
 app.get('/', (req, res) => {
@@ -256,6 +264,7 @@ app.post('/edit', (req, res) => {
         return res.redirect(url);
     }
 
+    
     const comments = readComments();
 
 
@@ -263,6 +272,8 @@ app.post('/edit', (req, res) => {
         flash = " имя или комментарий содержит ненормативную лексику.";
         return res.redirect(url);
     }
+
+
 
     const now = new Date();
     const dateTime = now.toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
@@ -272,10 +283,8 @@ app.post('/edit', (req, res) => {
     flashEdit = 'изменён'
     console.log(dateTime); // Например: "08.06.2025, 15:34:56"
 
-    const newComment = { username, comment, ip, date, time, flashEdit };
-    editComment(newComment);
-    flash = " комментарий изменен";
-    res.redirect(url);
+    const editCom = { username, comment, ip, date, time, flashEdit };
+    editComment(editCom, res);
 });
 
 const PORT = process.env.PORT || 3000;

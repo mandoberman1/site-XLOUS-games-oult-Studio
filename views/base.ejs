@@ -34,7 +34,7 @@
               <textarea id="comment" name="username" placeholder="Ваш username" required></textarea>
 
               <label for="comment">Комментарий:</label>
-              <textarea id="comment" name="comment" placeholder="Ваш комментарий" required></textarea>
+              <textarea class="input-comment" id="comment" name="comment" placeholder="Ваш комментарий" required></textarea>
       
               <button type="submit">Добавить комментарий</button>
             </form>
@@ -58,8 +58,8 @@
                           <button class="delete" type="submit">Удалить</button>
                         </form>
                         <form action="/edit" method="POST">
-                          <input style="display: none;" name="username" value="<%= item.username %>" type="text">
-                          <input type="text" name="comment" required value="<%= item.comment %>">
+                          <input  style="display: none;" name="username" value="<%= item.username %>" type="text">
+                          <textarea class="input-edit" type="text" name="comment" placeholder="Редактируйте комментарий" required style="resize: none;"><%= item.comment %></textarea>
                           <button class="edit" type="submit">Редактировать</button>
                         </form>  
                         </div>
