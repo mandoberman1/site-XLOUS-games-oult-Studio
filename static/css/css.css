@@ -114,13 +114,7 @@ body{
     .link-card-game{
         margin: 30px !important;
     }
-    .container{
-        padding: 20px 20px !important;
-    }
-    .autor{
-        width: 40% !important;
-        height: 50% !important;
-    }
+    
 }
 @media(max-width: 457px){
     .autor{
@@ -168,7 +162,10 @@ body{
 box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
 }
 .BASE{
-    
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     margin: 40px 0;
 }
 .main-site{
@@ -308,9 +305,9 @@ box-shadow: 0px 0px 73px 0px #FFF;
     }
     50%{
         transform: scale(0.90);
-        -webkit-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6);
-        -moz-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6);
-        box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6);
+        -webkit-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
+        -moz-box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0px 0px 18px 8px rgba(255, 255, 255, 0.6) !important;
     }
 }
 
@@ -455,7 +452,8 @@ box-shadow: 0px 0px 73px 0px #FFF;
 .btn-updates {
     width: 50px;
     height: 50px;
-    background-image: url("/icons/документ.png");
+    background-color: green;
+    background-image: url("../icons/document.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -500,144 +498,17 @@ box-shadow: 0px 0px 73px 0px #FFF;
     opacity: 0;
 }
 /* .main-games>card-game*12>.card[style='width: 18rem;']>img.card-img-top[src='...', alt='...']+.card-body>h5.card-title{Card title}+p.card-text{Some quick example text to build on the card title and make up the bulk of the card's content.}+a.btn.btn-primary[href='#']{Go somewhere} */
-.container {
-    margin: auto;
-    background: #25211e;
-    padding: 20px 50px;
-
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+/* Коменты */
+.comments{
+    display: flex;
+    background-color: #25211e;
+    width: 100%;
     -webkit-box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
     -moz-box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
     box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
-    color: white;
-}
-
-.comment-form {
-    margin-bottom: 20px;
-}
-
-.comment {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-
-
-}
-.comments-section{
-    width: 97%;
-    color: black;
-    font-family: "Bitter", serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-input[type="text"],
-textarea {
-    width: 95%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838 !important;
-}
-.account{
-    position: fixed;
-    top: 30px;
-    right: 30px;
-}
-.img-acc{
-    border-radius: 50%;
-    -webkit-box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
--moz-box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
-box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
-}
-.img-acc:hover{
-    cursor: pointer;
-}
-.with_autor{
-    display: flex;
+    padding: 20px 0;
     justify-content: center;
-    
 }
-.autor{
-    position: fixed;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    height: 30%;
-    margin-top: 200px;
-    z-index: 3;
-    background-color: #333;
-    border-radius: 30px;
-    justify-content: center !important;
-    align-items: center;
-    -webkit-box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
--moz-box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
-box-shadow: 0px 0px 17px 8px rgba(255, 255, 255, 0.17);
-}
-.comment-name-date{
-    display: flex;
-    justify-content: space-between;
-}
-.comment-name-date em{
-    text-align: right;
-}
-
-.hidden{
-    visibility: hidden ;
-}
-
-.line1{
-    height: 5px;
-    width: 30px;
-    background-color: white;
-    transform: rotate(45deg) translateY(3px);
-}
-.hide-ip{
-    cursor: pointer;
-}
-.lines{
-    cursor: pointer;
-}
-.line2{
-    height: 5px;
-    width: 30px;
-    background-color: white;
-    transform: rotate(-45deg);
-}
-.editDelete{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-}
-.delete{
-    margin: 5px 0 0 10px;
-    
-}
-.input-edit{
-    height: 100px;
-}
-#comment{
-    resize: none;
-}
-.input-comment{
-    height: 100px;
+.giscus{
+    width: 97%;
 }

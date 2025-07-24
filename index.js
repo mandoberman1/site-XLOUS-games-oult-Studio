@@ -201,7 +201,9 @@ app.get('/:url', (req, res) => {
     res.send(html);
 });
 
-
+app.get('bertagame', (req,res) => {
+    res.sendFile(path.join(__dirname, 'static/game/berta-game.html'));
+})
 
 app.post('/add', (req, res) => {
     const ip = req.ip;
