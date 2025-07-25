@@ -1,2 +1,2 @@
 # site-XLOUS-games-oult-Studio
- Сайт студии XLOUS ga,es
+<strong> Сайт студии XLOUS games</strong>
