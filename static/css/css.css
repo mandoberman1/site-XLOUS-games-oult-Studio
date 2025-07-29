@@ -14,14 +14,7 @@ body{
     
 }
 /* Основные настройки адаптации */
-@media(max-width: 513px){
-    .editDelete{
-        flex-direction: column !important;
-    }
-    .delete{
-        margin: 10px 0 !important;
-    }
-}
+
 @media (max-width: 1028px) {
 
     .main-game {
@@ -92,39 +85,26 @@ body{
         padding: 10px;
     }
 
-    input[type="text"],
-    textarea {
-        width: 100%;
-    }
-
     button {
         width: 100%;
         padding: 15px;
         font-size: 16px;
     }
 
-    .comment {
-        font-size: 14px;
-    }
-
-    .error {
-        width: 80%;
-        right: 10%;
-    }
-    .link-card-game{
-        margin: 30px !important;
+    .main-for-games{
+        height: auto !important;
     }
     
 }
-@media(max-width: 457px){
-    .autor{
-        width: 90% !important;
+@media(max-width: 761px){
+    .link-card-game{
+        margin: 23px !important;
     }
 }
 @media(max-width: 662px){
     
     .link-card-game{
-        margin: 10px !important;
+        margin: 40px !important;
     }
     .text-hello{
         font-size: 40px !important;
@@ -133,7 +113,13 @@ body{
         padding: 20px 10px !important;
     }
 }
-@media (max-width: 312px) {
+
+@media(max-width: 457px){
+    .link-card-game{
+        margin: 30px !important;
+    }
+}
+@media (max-width: 340px) {
     .game-cover-description{
         font-size: 110% !important;
     }
@@ -141,7 +127,7 @@ body{
         font-size: 30px !important;
     }
     .link-card-game{
-        margin: 5px !important;
+        margin: 10px 20px !important;
     }
     .main-game-name{
         justify-self: center !important;
@@ -150,11 +136,16 @@ body{
         font-size: 90% !important;
     }
 }
+@media (max-width: 296px) {
+    .link-card-game{
+        margin: -10px 10px !important;
+    }
+}
 .main{
     background-color: #25211e;
-    margin: 10px 0 50px 0 ;
+    margin: 20px 0 !important;
 
-    height: 800px;
+    height: auto;
     display: flex;
 
     -webkit-box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
@@ -170,7 +161,8 @@ box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
 }
 .main-site{
     flex-direction: column;
-    padding: 50px 10px;align-items: center;
+    padding: 50px 0px;
+    align-items: center;
 }
 .main-game{
     flex-direction: row;
@@ -225,15 +217,11 @@ box-shadow: 0px 0px 73px 0px #FFF;
     font-size: 50px;
 }
 
-.main-games{
-    display: flex;
-    height: 200px;
-    width: 100%;
-    justify-content: center;
-}
 .main-for-games{
     display: flex;
     flex-wrap: wrap;
+    height: auto;
+    width: 100%;
     justify-content: center;
 }
 
@@ -255,6 +243,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
 }
 .hide-text{
     position: relative;
+    
     top: -50px;
     font-size: 13px;
     transition: 1s ease;
@@ -262,6 +251,16 @@ box-shadow: 0px 0px 73px 0px #FFF;
     font-family: "Rubik Wet Paint", system-ui;
     font-weight: 300;
     font-style: normal;
+}
+
+.hide-text::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.2em; /* высота одной строки */
+  pointer-events: none; /* чтобы клик проходил сквозь псевдоэлемент */
 }
 .hide-text-hover{
     top: 0px !important;
