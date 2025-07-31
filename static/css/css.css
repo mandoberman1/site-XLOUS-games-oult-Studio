@@ -31,7 +31,8 @@ body{
     }
 
     .main-game-name {
-        width: 100%;
+        width: 300px !important;
+        height: auto;
     }
 
     .game-icon {
@@ -72,8 +73,9 @@ body{
 
     .download-button {
         width: 100%;
-        padding: 10px 20px;
+        padding: 5px;
         font-size: 16px;
+        margin: 5px;
     }
 
     .game-requirements {
@@ -118,10 +120,39 @@ body{
     .link-card-game{
         margin: 30px !important;
     }
+    .game-icon {
+        width: 60px !important;
+        height: 60px !important;
+        border-radius: 5px !important;
+    }
+    .game-name{
+        font-size: 18px !important;
+        position: relative;
+        top: -10px;
+    }
+    .main-game-name{
+        width: 200px !important;
+    }
+    .download-button{
+        height: 30px !important;
+        text-align: center !important;
+    }
+    .main-game{
+        padding: 50px 10px 0 10px !important;
+    }
+    .btn-updates{
+        width: 30px  !important;  
+        height: 30px !important;
+        
+    }
+    .slider-btn{
+        width: 30px;
+        height: 30px !important;
+    }
 }
 @media (max-width: 340px) {
     .game-cover-description{
-        font-size: 110% !important;
+        font-size: 90% !important;
     }
     .text-hello{
         font-size: 30px !important;
@@ -140,6 +171,10 @@ body{
     .link-card-game{
         margin: -10px 10px !important;
     }
+    .text-hello{
+        font-size: 23px !important;
+    }
+    
 }
 .main{
     background-color: #25211e;
@@ -155,19 +190,19 @@ box-shadow: 0px 20px 50px 18px rgba(0, 0, 0, 0.49);
 .BASE{
     justify-content: center;
     align-items: center;
-    display: flex;
+
     flex-direction: column;
     margin: 40px 0;
 }
 .main-site{
     flex-direction: column;
-    padding: 50px 0px;
+    padding: 100px ;
     align-items: center;
 }
 .main-game{
     flex-direction: row;
     height: auto;
-    padding: 50px 30px 0 50px;
+    padding: 30px 20px 0 50px;
 }
 .main-hello{
     display: flex;
@@ -281,6 +316,10 @@ box-shadow: 0px 0px 73px 0px #FFF;
     font-weight: 400;
     font-style: normal;
     margin: 17px 20px;
+    word-wrap: break-word !important;    /* Переносит длинные слова */
+    overflow-wrap: break-word !important; /* Альтернатива word-wrap */
+    white-space: normal !important;      /* Разрешает перенос строк (по умолчанию) */
+    hyphens: auto !important;            /* Автоматическая расстановка переносов (если поддерживается) */
 }
 .game-icon {
     width: 120px;
@@ -290,7 +329,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
 .game-icon img {
     width: 100%;
     height: 100%;
-    border-radius: 30px; /* Измените значение по желанию */
+    border-radius: 15px; /* Измените значение по желанию */
     animation: icon 3s infinite ease;
 }
 @keyframes icon {
@@ -311,7 +350,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
 .main-game-name{
     display: flex;
     width: 300px;
-    height: 15%;
+    height: auto;
 }
 
 .main-game-cover{
@@ -339,7 +378,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
     font-family: "Tiny5", sans-serif;
     font-weight: 400;
     font-style:italic;
-    font-size: 20px;
+    font-size: 25px;
     flex-direction: column;
 }
 
@@ -348,8 +387,8 @@ box-shadow: 0px 0px 73px 0px #FFF;
     flex-direction: column;
 }
 .game-banner-img{
-    width: 60%;
-    height: 500px;
+    width: auto;
+    height:500px;
     display: flex;
     align-self: center;
     border-radius: 30px;
@@ -399,7 +438,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
 .main-game-content-right{
     display: flex;
     flex-direction: column;
-    width: 55%;
+    width: 50%;
     height: 100%;
     justify-content: center;
     margin-top: 5px;
@@ -462,7 +501,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
     background-position: center;
     background-size: cover;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     cursor: pointer;
     transition: box-shadow 0.3s;
 }
@@ -518,4 +557,133 @@ box-shadow: 0px 0px 73px 0px #FFF;
 }
 .giscus{
     width: 97%;
+}
+/* slider */
+.slider-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(22, 6, 6, 0.2);
+            border-radius: 10px;
+            transition: 1s;
+        }
+        .slider-container:hover{
+            transform: scale(0.98) !important; /* Подъем при наведении */
+    -webkit-box-shadow: 0px 0px 18px 8px rgba(45, 129, 240, 0.6) !important;
+    -moz-box-shadow: 0px 0px 18px 8px rgba(45, 129, 240, 0.6) !important;
+    box-shadow: 0px 0px 18px 8px rgba(45, 129, 240, 0.6) !important;
+        }
+        
+        .slider {
+            display: flex;
+            height: auto;
+            transition: transform 0.5s ease-in-out;
+
+        }
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+
+            object-fit: cover;
+            display: block;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+/* footer */
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    width: 70%;
+    text-align: center !important;
+}
+footer a{ 
+    text-decoration: none;
+    color: white !important;
+    display: flex;
+    text-align: center;
+    position: relative;
+    right: -10px;
+}
+.footer p{
+    text-align: center !important;
+}
+footer a :hover{
+
+}
+footer a img{
+    width: 30px;
+    justify-content: center;
+    align-self: center;
+    height: 30px;
+    margin: 0 10px;
 }
