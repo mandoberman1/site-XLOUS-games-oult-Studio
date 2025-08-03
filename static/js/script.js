@@ -19,9 +19,8 @@ const page = document.querySelector('title').textContent
 const result = page.replace(/\s+/g, '');
 console.log(result);
 document.addEventListener('DOMContentLoaded', ()=> {
-    fetch('../../update-list.json')                       // 1
-    .then(response => response.json())    // 2
-    .then(data => {                        // 3
+    $.getJSON("../update-list.json")
+    .done(function( data ) {
         console.log(data);
         let found = []
         data.forEach((item) => {
