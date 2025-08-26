@@ -120,6 +120,9 @@ body{
     .link-card-game{
         margin: 30px !important;
     }
+    footer{
+        font-size: 14px !important;
+    }
     .game-icon {
         width: 80px !important;
         height: 80px !important;
@@ -133,10 +136,7 @@ body{
     .main-game-name{
         width: 200px !important;
     }
-    .download-button{
-        height: 30px !important;
-        text-align: center !important;
-    }
+  
     .main-game{
         padding: 50px 10px 0 10px !important;
     }
@@ -173,6 +173,9 @@ body{
     }
     .text-hello{
         font-size: 23px !important;
+    }
+    footer{
+        font-size: 12px !important;
     }
     
 }
@@ -681,7 +684,7 @@ footer a{
 .footer-link{
     transition: 1s !important;
 }
-.footer p{
+footer p{
     text-align: center !important;
 }
 .footer-link:hover{
