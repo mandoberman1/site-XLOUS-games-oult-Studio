@@ -110,14 +110,23 @@
         data-lang="ru"
         crossorigin="anonymous"
         async>
-</script></div>
+</script>
+</div><script>
+        // Fallback если скрипт не загрузился
+        setTimeout(() => {
+            if (!document.querySelector('.giscus-frame')) {
+                const container = document.getElementById('giscus-container');
+                container.innerHTML = '<p>Комментарии не загрузились. Отключите блокировщик рекламы.</p>';
+            }
+        }, 5000);
+    </script></div>
 <footer>
         
             <p>© 2025 XLOUS Store</p>
             <p>© 2025 XLOUS games oult Studio</p>
             <a href="https://t.me/xgosstudia"><p class="footer-link">Наш ТГК)</p><img src="https://telegram.org/img/t_logo_2x.png" alt=""></a>
     </footer>
-  </div>
+  
   
     </div>
     
