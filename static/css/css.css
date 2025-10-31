@@ -111,9 +111,7 @@ body{
     .text-hello{
         font-size: 40px !important;
     }
-    .main-part-name{
-        font-size: 40px !important;
-    }
+    
     .main-site{
         padding: 20px 10px !important;
     }
@@ -160,9 +158,7 @@ body{
     .text-hello{
         font-size: 30px !important;
     }
-    .main-part-name{
-        font-size: 30px !important;
-    }
+    
     .link-card-game{
         margin: 10px 20px !important;
     }
@@ -181,7 +177,7 @@ body{
         font-size: 23px !important;
     }
     .main-part-name{
-        font-size: 20px !important;
+        font-size: 120% !important;
     }
     footer{
         font-size: 12px !important;
@@ -278,6 +274,7 @@ box-shadow: 0px 0px 73px 0px #FFF;
     display: flex;
     justify-self: center;
     align-self: center;
+    font-size: 160%;
     padding: 30px 0 0 0;
 }
 .card-game{
